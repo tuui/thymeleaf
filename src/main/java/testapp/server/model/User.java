@@ -1,11 +1,17 @@
 package testapp.server.model;
 
+import javax.validation.constraints.Size;
+
 public class User {
 
 	private Long id;
+	@Size(min=6, max=30)
 	private String username;
+	@Size(min=1, max=100)
 	private String firstName;
+	@Size(min=1, max=100)
 	private String lastName;
+	@Size(min=5, max=30)
 	private String password;
 	private String email;
 	private String telephone;

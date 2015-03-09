@@ -10,6 +10,8 @@
 						<th th:text="#{user.username}">Username</th>
 						<th th:text="#{user.firstName}">First name</th>
 						<th th:text="#{user.lastName}">Last Name</th>
+						<th th:text="#{user.email}">E-mail</th>
+						<th th:text="#{user.telephone}">E-mail</th>
 						<th th:text="#{user.action}">Action</th>
 					</tr>
 				</thead>
@@ -18,6 +20,8 @@
 						<td th:text="${user.username}">hannibal</td>
 						<td th:text="${user.firstName}">John</td>
 						<td th:text="${user.lastName}">Smith</td>
+						<td th:text="${user.email}">name@email.com</td>
+						<td th:text="${user.telephone}">55667788</td>
 						<td>
 							<form action="#" th:action="@{/userList}" method="post">
 								<button type="submit" name="editUser" th:value="${rowStat.index}" th:text="#{user.editUser}">Edit user</button>

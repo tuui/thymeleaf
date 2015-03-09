@@ -24,6 +24,9 @@ public class UserRepository {
 		user1.setUsername("admin");
 		user1.setFirstName("Site");
 		user1.setLastName("Administrator");
+		user1.setPassword("admin");
+		user1.setEmail("admin@site.com");
+		user1.setTelephone("55 66 77 88");
 		users.put(user1.getId(), user1);
 		
 		User user2 = new User();
@@ -31,6 +34,8 @@ public class UserRepository {
 		user2.setUsername("martin");
 		user2.setFirstName("Martin");
 		user2.setLastName("T");
+		user2.setPassword("martin");
+		user2.setTelephone("500 600");
 		users.put(user2.getId(), user2);
 	}
 	
