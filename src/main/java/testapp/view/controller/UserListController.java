@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,21 +26,11 @@ public class UserListController {
 	private UserService userService;
 	private List<User> users;
 	
-	public UserListController() {
-		super();
-	}
-
-
-	@ModelAttribute("allUsers")
-    public List<User> allUsers() {
-		log.info("allUsers................");
-		users = userService.findAll();
-        return users;
-    }
-	
 	@RequestMapping(method = RequestMethod.GET)
-    public String viewUserList() {
+    public String viewUserList(ModelMap model) {
 		log.info("viewUserList....................");
+		users = userService.findAll();
+		model.addAttribute("allUsers", users);
 		return "user/userList";
     }
 
