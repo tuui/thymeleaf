@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<!-- **************************************************************** -->
+	<!-- RESOURCE FOLDERS CONFIGURATION -->
+	<!-- Dispatcher configuration for serving static resources -->
+	<!-- **************************************************************** -->
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+
+
+	<!-- **************************************************************** -->
+	<!-- SPRING ANNOTATION PROCESSING -->
+	<!-- **************************************************************** -->
+	<mvc:annotation-driven conversion-service="conversionService" />
+	<context:component-scan base-package="testapp" />
+
+
+	<!-- **************************************************************** -->
+	<!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
+	<!-- Standard Spring MessageSource implementation -->
+	<!-- **************************************************************** -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="Messages" />
+	</bean>
+
+
+	<!-- **************************************************************** -->
+	<!-- CONVERSION SERVICE -->
+	<!-- Standard Spring formatting-enabled implementation -->
+	<!-- **************************************************************** -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="formatters">
+			<set>
+				<bean class="testapp.view.conversion.DateFormatter" />
+			</set>
+		</property>
+	</bean>
+
+
+	<!-- **************************************************************** -->
+	<!-- THYMELEAF-SPECIFIC ARTIFACTS -->
+	<!-- **************************************************************** -->
+	
+	<!-- Thymeleaf interceptor for layouts: http://blog.codeleak.pl/2013/11/thymeleaf-template-layouts-in-spring.html -->
+	<mvc:interceptors>
+	    <bean class="testapp.view.thymeleaf.ThymeleafLayoutInterceptor" />
+	</mvc:interceptors>
+
+	<bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+		<!-- Template cache is true by default. Set to false if you want -->
+		<!-- templates to be automatically updated when modified. -->
+		<property name="cacheable" value="true" />
+	</bean>
+
+	<!-- kas vaja ?? kui on siis peaks see ka templateEngine minema -->
+	<bean id="urlTemplateResolver" class="org.thymeleaf.templateresolver.UrlTemplateResolver" />
+
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+		<property name="additionalDialects">
+			<set>
+				<bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
+<!-- 	TILES			<bean class="org.thymeleaf.extras.tiles2.dialect.TilesDialect" /> -->
+				<!-- TODO kas siia vaja ka <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" /> -->
+			</set>
+		</property>
+	</bean>
+
+	<!-- Handles all views except for the ones that are handled by Tiles. This view resolver will be executed as first one by Spring. -->
+	<bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+		<property name="characterEncoding" value="UTF-8" />
+		<!-- all message/* views will not be handled by this resolver as they are Tiles views -->
+		<property name="excludedViewNames">
+			<array>
+				<value>message/*</value>
+			</array>
+		</property>
+	</bean>
+
+	<!-- Handles Tiles views. POLE VIST VAJA HETKEL kui teha interceptoriga-->
+<!-- 	<bean id="tilesViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver"> -->
+<!-- 		<property name="templateEngine" ref="templateEngine" /> -->
+<!-- 		<property name="characterEncoding" value="UTF-8" /> -->
+<!-- 		<property name="viewClass" value="org.thymeleaf.extras.tiles2.spring4.web.view.ThymeleafTilesView" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="thymeleafTilesConfigurer" class="org.thymeleaf.extras.tiles2.spring4.web.configurer.ThymeleafTilesConfigurer"> -->
+<!-- 		<property name="definitions"> -->
+<!-- 			<array> -->
+<!-- 				<value>/WEB-INF/templates/message/tiles-defs.xml</value> -->
+<!-- 			</array> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+</beans>
