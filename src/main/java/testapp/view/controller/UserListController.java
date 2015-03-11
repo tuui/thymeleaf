@@ -29,7 +29,7 @@ public class UserListController {
 	@RequestMapping(method = RequestMethod.GET)
     public String viewUserList(ModelMap model) {
 		log.info("viewUserList....................");
-		users = userService.findAll();
+		users = userService.getUsers();
 		model.addAttribute("allUsers", users);
 		return "user/userList";
     }

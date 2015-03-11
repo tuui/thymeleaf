@@ -39,7 +39,7 @@ public class UserRepository {
 		users.put(user2.getId(), user2);
 	}
 	
-	public List<User> findAll() {
+	public List<User> getUsers() {
         return new LinkedList<User>(this.users.values());
     }
 	
