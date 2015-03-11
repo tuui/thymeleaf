@@ -24,20 +24,24 @@ public class UserEditController {
 	@Autowired
 	private UserService userService;
 	
+	private String oldPassword;
+	
 	//	User peab olema argumendiks, muidu tuleb: Neither BindingResult nor plain target object for bean name 'user'
 	@RequestMapping({"/userEdit"})
     public String viewUserEdit(final User user) {
-		log.info("viewEditUsermodel-----------");
+		log.info("viewEditUsermodel-----------" + user.getPassword());
+		oldPassword = user.getPassword();
         return "user/userEdit";
     }
 	
 	@RequestMapping(value="/userEdit", params={"saveUser"}, method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult bindingResult, SessionStatus status) {
-		log.info("user...." + user.getFirstName());
+    public String saveUser(@Valid User user, BindingResult bindingResult, SessionStatus status) {	
+		if(user.getPassword().isEmpty()){
+			user.setPassword(oldPassword);
+		}
         if (bindingResult.hasErrors()) {
             return "user/userEdit";
         }
-        log.info("usergetid......." + user.getId());
         userService.saveUser(user);
         status.setComplete();
         return "redirect:/userList";
