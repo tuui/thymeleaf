@@ -9,7 +9,7 @@ import testapp.server.model.Message;
 import testapp.server.repository.MessageRepository;
 
 @Service
-public class MessageService {
+public class MessageService implements MessageI{
 
 	@Autowired
 	private MessageRepository messageRepository;

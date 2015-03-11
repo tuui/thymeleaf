@@ -9,7 +9,7 @@ import testapp.server.model.User;
 import testapp.server.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements UserI{
 
 	@Autowired
 	private UserRepository userRepository;
@@ -20,6 +20,10 @@ public class UserService {
 
 	public User getUser(Long id) {
 		return userRepository.getUser(id);
+	}
+	
+	public User getUserByUsername(String username){
+		return userRepository.getUserByUsername(username);
 	}
 
 	public void saveUser(User user) {
@@ -34,4 +38,7 @@ public class UserService {
 		userRepository.removeUser(userId);
 	}
 
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 }

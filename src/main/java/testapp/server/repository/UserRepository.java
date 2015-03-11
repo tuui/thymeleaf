@@ -27,6 +27,7 @@ public class UserRepository {
 		user1.setPassword("admin");
 		user1.setEmail("admin@site.com");
 		user1.setTelephone("55 66 77 88");
+		user1.setRole("ROLE_ADMIN");
 		users.put(user1.getId(), user1);
 		
 		User user2 = new User();
@@ -36,6 +37,7 @@ public class UserRepository {
 		user2.setLastName("T");
 		user2.setPassword("martin");
 		user2.setTelephone("500 600");
+		user2.setRole("ROLE_USER");
 		users.put(user2.getId(), user2);
 	}
 	
@@ -45,6 +47,15 @@ public class UserRepository {
 	
 	public User getUser(Long id){
 		return users.get(id);
+	}
+	
+	public User getUserByUsername(String username){
+		for(User user : users.values()){
+			if(user.getUsername().equals(username)){
+				return user;
+			}
+		}
+		return null;
 	}
 	
 	public void addUser(User user){

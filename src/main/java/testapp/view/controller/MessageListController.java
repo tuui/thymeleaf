@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import testapp.server.model.Message;
-import testapp.server.service.MessageService;
+import testapp.server.service.MessageI;
 
 @Controller
 @RequestMapping("/auth//messageList")
 public class MessageListController {
 
 	@Autowired
-	private MessageService messageService;
+	private MessageI messageI;
 	
 	@ModelAttribute("allMessages")
 	public List<Message> allMessages(){
-		return messageService.getMessages();
+		return messageI.getMessages();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
