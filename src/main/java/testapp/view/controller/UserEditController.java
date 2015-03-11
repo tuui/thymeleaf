@@ -27,24 +27,24 @@ public class UserEditController {
 	private String oldPassword;
 	
 	//	User peab olema argumendiks, muidu tuleb: Neither BindingResult nor plain target object for bean name 'user'
-	@RequestMapping({"/userEdit"})
+	@RequestMapping({"/admin/userEdit"})
     public String viewUserEdit(final User user) {
 		log.info("viewEditUsermodel-----------" + user.getPassword());
 		oldPassword = user.getPassword();
-        return "user/userEdit";
+        return "admin/user/userEdit";
     }
 	
-	@RequestMapping(value="/userEdit", params={"saveUser"}, method = RequestMethod.POST)
+	@RequestMapping(value="/admin/userEdit", params={"saveUser"}, method = RequestMethod.POST)
     public String saveUser(@Valid User user, BindingResult bindingResult, SessionStatus status) {	
 		if(user.getPassword().isEmpty()){
 			user.setPassword(oldPassword);
 		}
         if (bindingResult.hasErrors()) {
-            return "user/userEdit";
+            return "admin/user/userEdit";
         }
         userService.saveUser(user);
         status.setComplete();
-        return "redirect:/userList";
+        return "redirect:/admin/userList";
     }
 
 }

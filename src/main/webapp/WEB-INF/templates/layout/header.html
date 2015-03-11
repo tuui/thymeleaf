@@ -4,10 +4,36 @@
 <body>
 
 	<div th:fragment="header">
-		<a href="#" th:href="@{/}">Home</a>
-		<a href="#" th:href="@{/userList}">Users</a>
-		<a href="#" th:href="@{/messageList}">Messages</a>
+	
+		<div style="">
+	
+			<a href="#" th:href="@{/}">Home</a>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:href="@{/admin/userList}">Users</a>
+			<a sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')" href="#" th:href="@{/auth/messageList}">Messages</a>
+			<a href="#" th:href="@{/contact}">Contact</a>
+			
+			<div sec:authorize="!isAuthenticated()" style="text-align: right">
+		        <form th:action="@{/j_spring_security_check}" method="post">
+		            <label for="j_username">Username</label>:
+		            <input type="text" id="j_username" name="j_username" autofocus="autofocus" />
+		            <label for="j_password">Password</label>:
+		            <input type="password" id="j_password" name="j_password" /> <br />
+		            <input type="submit" value="Log in" />
+		        </form>
+				<p th:if="${loginError}">Wrong user or password</p>
+			</div>
+			
+			<div sec:authorize="isAuthenticated()" style="text-align: right">
+				Logged user: <span sec:authentication="name">Bob</span> | 
+				Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span> | 
+				<a href="index.html" th:href="@{/j_spring_security_logout}">Logout</a>
+			</div>
+		
+		</div>
+		
 	</div>
+
+	
 
 </body>
 </html>

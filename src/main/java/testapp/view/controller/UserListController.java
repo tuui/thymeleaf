@@ -17,7 +17,7 @@ import testapp.server.model.User;
 import testapp.server.service.UserService;
 
 @Controller
-@RequestMapping("/userList")
+@RequestMapping("/admin/userList")
 public class UserListController {
 
 	private final static Logger log = LoggerFactory.getLogger(UserListController.class);
@@ -31,7 +31,7 @@ public class UserListController {
 		log.info("viewUserList....................");
 		users = userService.getUsers();
 		model.addAttribute("allUsers", users);
-		return "user/userList";
+		return "admin/user/userList";
     }
 
 	@RequestMapping(params={"editUser"}, method = RequestMethod.POST)
@@ -39,14 +39,14 @@ public class UserListController {
 		log.info("editUser................");
 		final Integer rowId = Integer.valueOf(req.getParameter("editUser"));
 		redirectAttrs.addFlashAttribute("user", users.get(rowId));
-        return "redirect:/userEdit";
+        return "redirect:/admin/userEdit";
     }
 	
 	@RequestMapping(params={"addUser"}, method = RequestMethod.POST)
     public String addUser(RedirectAttributes redirectAttrs) {
 		log.info("addUser................");
 		redirectAttrs.addFlashAttribute("user", new User());
-        return "redirect:/userEdit";
+        return "redirect:/admin/userEdit";
     }
 	
 	/*	

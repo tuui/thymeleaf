@@ -11,7 +11,7 @@ import testapp.server.model.Message;
 public class MessageRepository {
 
 	public List<Message> getMessages(){
-		List<Message> messages = new LinkedList<Message>();//TODO <>
+		List<Message> messages = new LinkedList<>();
 		
 		Message m1 = new Message();
 		m1.setText("Your order has been shipped");

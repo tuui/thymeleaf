@@ -17,7 +17,7 @@ public class UserRepository {
 	public UserRepository() {
 		super();
 		
-		users = new LinkedHashMap<Long,User>();
+		users = new LinkedHashMap<>();
 		
 		User user1 = new User();
 		user1.setId(1L);

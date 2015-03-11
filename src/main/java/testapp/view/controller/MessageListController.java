@@ -12,7 +12,7 @@ import testapp.server.model.Message;
 import testapp.server.service.MessageService;
 
 @Controller
-@RequestMapping("/messageList")
+@RequestMapping("/auth//messageList")
 public class MessageListController {
 
 	@Autowired
@@ -25,6 +25,6 @@ public class MessageListController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewMessageList(){
-		return "message/messageList";
+		return "/auth/message/messageList";
 	}
 }

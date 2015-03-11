@@ -23,7 +23,7 @@
 						<td th:text="${user.email}">name@email.com</td>
 						<td th:text="${user.telephone}">55667788</td>
 						<td>
-							<form action="#" th:action="@{/userList}" method="post">
+							<form action="#" th:action="@{/admin/userList}" method="post">
 								<button type="submit" name="editUser" th:value="${rowStat.index}" th:text="#{user.editUser}">Edit user</button>
 							</form>
 						</td>
@@ -32,7 +32,7 @@
 			</table>
 			<div>
 <!-- 				<a th:href="@{/userEdit}" th:text="#{user.addUser}">New</a> -->
-				<form action="#" th:action="@{/userList}" method="post">
+				<form action="#" th:action="@{/admin/userList}" method="post">
 					<button type="submit" name="addUser" th:text="#{user.addUser}">Add new User</button>
 				</form>
 			</div>
