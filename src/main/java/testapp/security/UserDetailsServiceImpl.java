@@ -24,7 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	    }
 	    Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(user.getRole());
 	    
-	    return new UserPrincipal(user.getUsername(), user.getPassword(), authorities);
+	    return new AuthenticatedUser(user.getUsername(), user.getPassword(), authorities);
 	}
 
 	public void setUserI(UserI userI) {
