@@ -15,7 +15,7 @@
 		<jboss.home>C:\Servers\wildfly-8.2.0.Final\standalone\deployments</jboss.home>
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
 		<thymeleafspringsecurity3.version>2.1.1.RELEASE</thymeleafspringsecurity3.version>
-<!-- 		<thymeleaftiles2.version>2.1.1.RELEASE</thymeleaftiles2.version> -->
+		<hdiv.version>2.1.9</hdiv.version>
 		<springframework.version>4.1.2.RELEASE</springframework.version>
 		<springsecurity.version>3.2.6.RELEASE</springsecurity.version>
 	</properties>
@@ -70,6 +70,8 @@
 	</build>
 
 	<dependencies>
+	
+		<!-- THYMELEAF -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
 			<artifactId>thymeleaf</artifactId>
@@ -88,24 +90,8 @@
 			<version>${thymeleafspringsecurity3.version}</version>
 			<scope>compile</scope>
 		</dependency>
-<!-- 		<dependency> need vajalikud ainult tiles-i jaoks-->
-<!--             <groupId>org.thymeleaf.extras</groupId> -->
-<!--             <artifactId>thymeleaf-extras-tiles2</artifactId> -->
-<!--             <version>${thymeleaftiles2.version}</version> -->
-<!--         </dependency> -->
-<!--         <dependency> -->
-<!--             <groupId>org.thymeleaf.extras</groupId> -->
-<!--             <artifactId>thymeleaf-extras-tiles2-spring4</artifactId> -->
-<!--             <version>${thymeleaftiles2.version}</version> -->
-<!--         </dependency> -->
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-
+	
+		<!-- SPRING -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -124,24 +110,6 @@
 			<version>${springframework.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework</groupId> -->
-		<!-- <artifactId>spring-aop</artifactId> -->
-		<!-- <version>${springframework.version}</version> -->
-		<!-- <scope>compile</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework</groupId> -->
-		<!-- <artifactId>spring-aspects</artifactId> -->
-		<!-- <version>${springframework.version}</version> -->
-		<!-- <scope>compile</scope> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework</groupId> -->
-		<!-- <artifactId>spring-expression</artifactId> -->
-		<!-- <version>${springframework.version}</version> -->
-		<!-- <scope>compile</scope> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -154,7 +122,7 @@
 			<version>${springframework.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
+		<!-- SPRING SECURITY -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -171,6 +139,30 @@
 			<version>${springsecurity.version}</version>
 		</dependency>
 
+		<!-- HDIV -->
+		<dependency>
+		    <groupId>org.hdiv</groupId>
+		    <artifactId>hdiv-config</artifactId>
+		    <version>${hdiv.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hdiv</groupId>
+		    <artifactId>hdiv-spring-mvc</artifactId>
+		    <version>${hdiv.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hdiv</groupId>
+		    <artifactId>hdiv-thymeleaf</artifactId>
+		    <version>${hdiv.version}</version>
+		</dependency>
+
+		<!-- JAVAX -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -178,6 +170,7 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- LOGGING -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
