@@ -15,7 +15,6 @@
 		<jboss.home>C:\Servers\wildfly-8.2.0.Final\standalone\deployments</jboss.home>
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
 		<thymeleafspringsecurity3.version>2.1.1.RELEASE</thymeleafspringsecurity3.version>
-		<hdiv.version>2.1.9</hdiv.version>
 		<springframework.version>4.1.2.RELEASE</springframework.version>
 		<springsecurity.version>3.2.6.RELEASE</springsecurity.version>
 	</properties>
@@ -137,23 +136,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${springsecurity.version}</version>
-		</dependency>
-
-		<!-- HDIV -->
-		<dependency>
-		    <groupId>org.hdiv</groupId>
-		    <artifactId>hdiv-config</artifactId>
-		    <version>${hdiv.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.hdiv</groupId>
-		    <artifactId>hdiv-spring-mvc</artifactId>
-		    <version>${hdiv.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.hdiv</groupId>
-		    <artifactId>hdiv-thymeleaf</artifactId>
-		    <version>${hdiv.version}</version>
 		</dependency>
 
 		<!-- JAVAX -->
