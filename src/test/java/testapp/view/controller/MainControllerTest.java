@@ -14,28 +14,25 @@ public class MainControllerTest extends AbstractTestCase {
 
 	@Before
 	public void setup() {
-        // Setup Spring test in webapp-mode (same config as spring-boot)
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+		// Setup Spring test in webapp-mode (same config as spring-boot)
+		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
-	
+
 	@Test
 	public void testRoot() throws Exception {
-		 mockMvc.perform(MockMvcRequestBuilders.get("/"))
-		  .andExpect(MockMvcResultMatchers.status().isOk())
-		  .andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
+		mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
 	}
-	
+
 	@Test
 	public void testContact() throws Exception {
-		 mockMvc.perform(MockMvcRequestBuilders.get("/contact"))
-		  .andExpect(MockMvcResultMatchers.status().isOk())
-		  .andExpect(MockMvcResultMatchers.content().string(containsString("You can contact us!")));
+		mockMvc.perform(MockMvcRequestBuilders.get("/contact")).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string(containsString("You can contact us!")));
 	}
-	
+
 	@Test
 	public void testLoginError() throws Exception {
-		 mockMvc.perform(MockMvcRequestBuilders.get("/login-error"))
-		  .andExpect(MockMvcResultMatchers.status().isOk())
-		  .andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
+		mockMvc.perform(MockMvcRequestBuilders.get("/login-error")).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
 	}
 }
