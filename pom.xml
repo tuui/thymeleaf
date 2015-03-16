@@ -12,10 +12,11 @@
 	<description>XML/XHTML/HTML5 template engine for Java</description>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jboss.home>C:\Servers\wildfly-8.2.0.Final\standalone\deployments</jboss.home>
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
 		<thymeleafspringsecurity3.version>2.1.1.RELEASE</thymeleafspringsecurity3.version>
-		<springframework.version>4.1.2.RELEASE</springframework.version>
+		<springframework.version>4.1.5.RELEASE</springframework.version>
 		<springsecurity.version>3.2.6.RELEASE</springsecurity.version>
 	</properties>
 
@@ -121,6 +122,11 @@
 			<version>${springframework.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
 		<!-- SPRING SECURITY -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -141,15 +147,32 @@
 		<!-- JAVAX -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
+		     <artifactId>javax.servlet-api</artifactId>
+		     <version>3.0.1</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.0.0.GA</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<!-- TESTING -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot</artifactId>
+			<version>1.2.2.RELEASE</version>
 		</dependency>
 
 		<!-- LOGGING -->

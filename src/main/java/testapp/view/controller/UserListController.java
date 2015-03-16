@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import testapp.server.model.User;
-import testapp.server.service.UserService;
+import testapp.server.service.UserI;
 
 @Controller
 @RequestMapping("/admin/userList")
@@ -23,13 +23,13 @@ public class UserListController {
 	private final static Logger log = LoggerFactory.getLogger(UserListController.class);
 	
 	@Autowired
-	private UserService userService;
+	private UserI userI;
 	private List<User> users;
 	
 	@RequestMapping(method = RequestMethod.GET)
     public String viewUserList(ModelMap model) {
 		log.info("viewUserList....................");
-		users = userService.getUsers();
+		users = userI.getUsers();
 		model.addAttribute("allUsers", users);
 		return "admin/user/userList";
     }

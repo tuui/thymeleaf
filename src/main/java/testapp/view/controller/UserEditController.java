@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import testapp.server.model.User;
-import testapp.server.service.UserService;
+import testapp.server.service.UserI;
 
 @Controller
 @SessionAttributes(types = User.class)
@@ -22,7 +22,7 @@ public class UserEditController {
 	private final static Logger log = LoggerFactory.getLogger(UserEditController.class);
 	
 	@Autowired
-	private UserService userService;
+	private UserI userI;
 	
 	private String oldPassword;
 	
@@ -42,7 +42,7 @@ public class UserEditController {
         if (bindingResult.hasErrors()) {
             return "admin/user/userEdit";
         }
-        userService.saveUser(user);
+        userI.saveUser(user);
         status.setComplete();
         return "redirect:/admin/userList";
     }
