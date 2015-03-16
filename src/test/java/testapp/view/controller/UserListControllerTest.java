@@ -26,6 +26,6 @@ public class UserListControllerTest extends AbstractTestCase{
 	public void testListProducts() throws Exception {
 		 mockMvc.perform(MockMvcRequestBuilders.get("/admin/userList"))
 		  .andExpect(MockMvcResultMatchers.status().isOk())
-		  .andExpect(MockMvcResultMatchers.content().string(containsString("admin")));
+		  .andExpect(MockMvcResultMatchers.content().string(containsString("Users list")));
 	}
 }

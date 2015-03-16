@@ -34,10 +34,6 @@ public class UserService implements UserI{
 		}
 	}
 
-	public void removeUser(Long userId) {
-		userRepository.removeUser(userId);
-	}
-
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}

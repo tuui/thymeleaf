@@ -7,7 +7,6 @@ import testapp.server.model.User;
 
 public interface UserI {
 
-
 	List<User> getUsers();
 
 	User getUser(Long id);
@@ -15,7 +14,4 @@ public interface UserI {
 	User getUserByUsername(String username);
 
 	void saveUser(User user);
-
-	void removeUser(Long userId);
-
 }

@@ -67,10 +67,6 @@ public class UserRepository {
 		users.replace(user.getId(), user);
 	}
 	
-	public void removeUser(Long userId){
-		users.remove(userId);
-	}
-	
 	private Long getUserMaxId(){
 		Long maxId = 1L;
 		for(Long id : users.keySet()){
