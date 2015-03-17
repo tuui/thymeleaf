@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<div th:fragment="menu" class="menu">
+		<ul>
+			<li>
+				<a href="#" th:href="@{/}">Home</a>
+			</li>
+			<li sec:authorize="hasRole('ROLE_ADMIN')">
+				<a href="#" th:href="@{/admin/userList}">Users</a>
+			</li>
+			<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
+				<a href="#" th:href="@{/auth/messageList}">Messages</a>
+			</li>
+			<li>
+				<a href="#" th:href="@{/contact}">Contact</a>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

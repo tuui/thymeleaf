@@ -3,10 +3,16 @@
 	<head>
 		<title>testiapp</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" media="all" href="../../css/style.css" th:href="@{/css/style.css}"/>
 	</head>
 	<body>
 		<div th:replace="layout/header :: header">Header</div>
-		<div th:replace="${view} :: content">Content</div>
+		<div class="content-wrapper">
+			<div th:replace="layout/menu :: menu">Menu</div>
+			<div class="content">
+				<div th:replace="${view} :: content">Content</div>
+			</div>
+		</div>
 		<div th:replace="layout/footer :: footer">Footer</div>
 	</body>
 </html>
