@@ -18,6 +18,11 @@ public class MessageListController {
 	@Autowired
 	private MessageI messageI;
 	
+	@ModelAttribute("page")
+	public String module() {
+		return "messages";
+	}
+	
 	@ModelAttribute("allMessages")
 	public List<Message> allMessages(){
 		return messageI.getMessages();

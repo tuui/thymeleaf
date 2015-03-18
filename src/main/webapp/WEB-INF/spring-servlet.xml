@@ -64,9 +64,6 @@
 		<property name="cacheable" value="true" />
 	</bean>
 
-	<!-- kas vaja ?? kui on siis peaks see ka templateEngine minema -->
-	<bean id="urlTemplateResolver" class="org.thymeleaf.templateresolver.UrlTemplateResolver" />
-
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
 		<property name="additionalDialects">

@@ -28,14 +28,27 @@ header{
 	list-style: none;
 }
 .menu li{
-	margin: 5px 0;
     border-bottom: 1px dotted;
-    padding: 5px 0 10px 15px;
+}
+.menu a{
+	display: block;
+    font-family: verdana;
+    font-size: 14px;
+    padding: 11px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000000;
+}
+.menu a:hover, .menu a.active{
+	background-color: #4fc0e8;
+	color: #ffffff;
 }
 .content {
 	width: 900px;
 	display: table-cell;
-	padding: 15px;
+	padding: 20px;
+	border-left: 1px dotted;
+	border-bottom: 1px dotted;
 }
 .footer-wrapper{
 	width: 1100px;
@@ -43,7 +56,6 @@ header{
 }
 footer{
 	width: 870px;
-	border-top: 1px dotted;
 	float: right;
     padding-right: 20px;
     text-align: right;
