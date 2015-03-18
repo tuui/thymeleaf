@@ -21,7 +21,7 @@ public class MainControllerTest extends AbstractTestCase {
 	@Test
 	public void testRoot() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/")).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
+				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome!")));
 	}
 
 	@Test
@@ -33,6 +33,6 @@ public class MainControllerTest extends AbstractTestCase {
 	@Test
 	public void testLoginError() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/login-error")).andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome to our homepage!")));
+				.andExpect(MockMvcResultMatchers.content().string(containsString("Welcome!")));
 	}
 }

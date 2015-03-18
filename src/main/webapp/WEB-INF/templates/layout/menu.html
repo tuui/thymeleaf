@@ -16,6 +16,9 @@
 			<li>
 				<a th:classappend="${page == 'contact' ? 'active' : ''}" href="#" th:href="@{/contact}">Contact</a>
 			</li>
+			<li sec:authorize="hasRole('ROLE_ADMIN')">
+				<a th:classappend="${page == 'devTest' ? 'active' : ''}" href="#" th:href="@{/admin/devTest}">Dev &amp; Test</a>
+			</li>
 		</ul>
 	</div>
 
