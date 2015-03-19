@@ -35,7 +35,7 @@ public class UserEditController {
 	//	User peab olema argumendiks, muidu tuleb: Neither BindingResult nor plain target object for bean name 'user'
 	@RequestMapping({"/admin/userEdit"})
     public String viewUserEdit(final User user) {
-		log.info("viewEditUsermodel-----------" + user.getPassword());
+		log.debug("viewEditUsermodel...");
 		oldPassword = user.getPassword();
         return "admin/user/userEdit";
     }

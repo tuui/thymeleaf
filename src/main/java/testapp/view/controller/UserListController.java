@@ -34,7 +34,7 @@ public class UserListController {
 	
 	@RequestMapping(method = RequestMethod.GET)
     public String viewUserList(ModelMap model) {
-		log.info("viewUserList....................");
+		log.debug("viewUserList...");
 		users = userI.getUsers();
 		model.addAttribute("allUsers", users);
 		return "admin/user/userList";
@@ -42,7 +42,7 @@ public class UserListController {
 
 	@RequestMapping(params={"editUser"}, method = RequestMethod.POST)
     public String editUser(final HttpServletRequest req, RedirectAttributes redirectAttrs) {
-		log.info("editUser................");
+		log.debug("editUser...");
 		final Integer rowId = Integer.valueOf(req.getParameter("editUser"));
 		redirectAttrs.addFlashAttribute("user", users.get(rowId));
         return "redirect:/admin/userEdit";
@@ -50,7 +50,7 @@ public class UserListController {
 	
 	@RequestMapping(params={"addUser"}, method = RequestMethod.POST)
     public String addUser(RedirectAttributes redirectAttrs) {
-		log.info("addUser................");
+		log.debug("addUser...");
 		redirectAttrs.addFlashAttribute("user", new User());
         return "redirect:/admin/userEdit";
     }
