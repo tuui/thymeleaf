@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/admin/devTest")
 public class DevTestController {
 	
 	@ModelAttribute("page")
@@ -13,12 +14,12 @@ public class DevTestController {
 		return "devTest";
 	}
 	
-	@RequestMapping(value = "/admin/devTest", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
     public String devTestPage() {
 		return "admin/devtest/devTest";
     }
 	
-	@RequestMapping(value = "/admin/devTest/exception", method = RequestMethod.GET)
+	@RequestMapping(value = "/exception", method = RequestMethod.GET)
     public String throwException() {
         throw new RuntimeException("Exception thrown on purpose!");
     }
