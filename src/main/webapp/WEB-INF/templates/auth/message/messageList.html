@@ -2,19 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
 	<div th:fragment="content">
-		<h2 th:text="#{message.list}">List of messages</h2>
-		<table>
+		<h2 th:text="#{message.title}">Messages</h2>
+		<ul class="tabs">
+			<li>
+				<a th:classappend="${tab == 'tab1' ? 'active' : ''}" href="#" th:href="@{/auth/messageList}">Recieved messages</a>
+			</li>
+			<li>
+				<a th:classappend="${tab == 'tab2' ? 'active' : ''}" href="#" th:href="@{/auth/messageList/2}">Sent messages</a>
+			</li>
+			<li>
+				<a th:classappend="${tab == 'tab3' ? 'active' : ''}" href="#" th:href="@{/auth/messageList/3}">Send new message</a>
+			</li>
+		</ul>
+		<!-- Recieved messages -->
+		<table th:if="${tab == 'tab1'}" class="table-full">
 			<thead>
 				<tr>
-					<th th:text="#{message.text}">Text</th>
+					<th th:text="#{message.date}">Date</th>
+					<th th:text="#{message.message}">Message</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="message : ${allMessages}">
+				<tr th:each="message : ${recievedMessages}">
+					<td th:text="${{message.date}}">15.01.2015 15:15</td>
 					<td th:text="${message.text}">long message text here</td>
+				</tr>
+				<tr th:unless="${!#lists.isEmpty(recievedMessages)}">
+					<td colspan="2">No messages</td>
 				</tr>
 			</tbody>
 		</table>
+		
+		<!-- Sent messages -->
+		<table th:if="${tab == 'tab2'}" class="table-full">
+			<thead>
+				<tr>
+					<th th:text="#{message.date}">Date</th>
+					<th th:text="#{message.message}">Message</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="message : ${sentMessages}">
+					<td th:text="${{message.date}}">15.01.2015 15:15</td>
+					<td th:text="${message.text}">long message text here</td>
+				</tr>
+				<tr th:unless="${!#lists.isEmpty(sentMessages)}">
+					<td colspan="2">No messages</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Sent new message -->
+		<div th:if="${tab == 'tab3'}">
+			<form action="#" th:action="@{/auth/messageList}" th:object="${message}" method="post">
+				<table>
+					<tr>
+						<td th:text="#{message.message}">Message</td>
+						<td><textarea th:field="*{text}" /></td>
+						<td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Message Error</td>
+					</tr>
+				</table>
+				<div>
+					<button type="submit" name="sendMessage" th:text="#{message.sendMessage}">Send message</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

@@ -6,5 +6,9 @@ import testapp.server.model.Message;
 
 public interface MessageI {
 	
-	List<Message> getMessages();
+	List<Message> getRecievedMessages();
+	
+	List<Message> getSentMessages();
+	
+	void insertMessage(Message message);
 }

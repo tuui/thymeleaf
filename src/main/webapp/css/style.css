@@ -1,52 +1,64 @@
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
 }
+
 a {
 	color: #328eea;
 }
-.header-wrapper{
-    height: 60px;
-    width: 100%;
-    border-bottom: 1px dotted;
+
+.header-wrapper {
+	height: 60px;
+	width: 100%;
+	border-bottom: 1px dotted;
 }
-header{
-    height: 100%;
-    margin: 0 auto;
-    width: 1100px;
+
+header {
+	height: 100%;
+	margin: 0 auto;
+	width: 1100px;
 }
-.content-wrapper{
+
+.content-wrapper {
 	width: 1100px;
 	margin: 0 auto;
 	display: table;
 }
+
 .menu {
 	width: 200px;
 	min-width: 200px;
 	display: table-cell;
 	vertical-align: top;
 }
-.menu ul{
+
+.menu ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
 }
-.menu li{
-    border-bottom: 1px dotted;
+
+.menu li {
+	border-bottom: 1px dotted;
 }
-.menu a{
+
+.menu a {
 	display: block;
-    font-family: verdana;
-    font-size: 14px;
-    padding: 11px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #000000;
+	font-family: verdana;
+	font-size: 14px;
+	padding: 11px 20px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #000000;
 }
-.menu a:hover, .menu a.active{
+
+.menu a:hover, .menu a.active {
 	background-color: #4fc0e8;
 	color: #ffffff;
 }
+
 .content {
 	width: 900px;
 	max-width: 900px;
@@ -55,24 +67,80 @@ header{
 	border-left: 1px dotted;
 	border-bottom: 1px dotted;
 }
-.footer-wrapper{
+
+.footer-wrapper {
 	width: 1100px;
 	margin: 0 auto;
 }
-footer{
+
+footer {
 	width: 870px;
 	float: right;
-    padding-right: 20px;
-    text-align: right;
+	padding-right: 20px;
+	text-align: right;
 }
-.login{
+
+.login {
 	float: right;
 	margin-top: 15px;
 }
-.login p{
+
+.login p {
 	margin: 0px;
 	color: #ff0000;
 }
-.stacktrace{
+
+.stacktrace {
 	color: #cf0000;
+}
+
+/* Tabs */
+.tabs {
+	list-style: outside none none;
+	margin: 0 0 20px 0;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
+	border-bottom: 1px dashed;
+}
+
+.tabs li {
+	float: left;
+	margin: 0 0.5em 0 0;
+}
+
+.tabs a {
+	border-top: 1px dashed;
+	border-left: 1px dashed;
+	border-right: 1px dashed;
+	color: #444;
+	float: left;
+	padding: 0.5em 3em;
+	position: relative;
+	text-decoration: none;
+}
+
+.tabs a:hover, .tabs a.active {
+	background-color: #4fc0e8;
+	color: #ffffff; 
+}
+
+/* Table */ 
+.table-full{
+	width: 100%;
+}
+
+.table-full tbody > tr:nth-child(2n+1) > td, .table-full tbody > tr:nth-child(2n+1) > th {
+    background-color: #f9f9f9;
+}
+
+.table-full th, .table-full td {
+	border-bottom: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.table-full th {
+	font-weight: bold;
 }
