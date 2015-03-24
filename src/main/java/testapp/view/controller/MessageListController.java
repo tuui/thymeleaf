@@ -1,5 +1,6 @@
 package testapp.view.controller;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import testapp.server.model.Message;
+import testapp.server.model.MessageTypeEnum;
 import testapp.server.service.MessageI;
 
 
@@ -53,6 +55,12 @@ public class MessageListController {
 		return messageI.getSentMessages();
 	}
 	
+	@ModelAttribute("allMessageTypes")
+	public List<MessageTypeEnum> getAllMessageTypes(){
+		log.debug("getAllMessageTypes........");
+		return Arrays.asList(MessageTypeEnum.GENERAL, MessageTypeEnum.ORDER);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String viewMessages(Model model){
 		tab = "tab1";
@@ -80,6 +88,8 @@ public class MessageListController {
         }
         message.setDate(new Date());
         messageI.insertMessage(message);
+        
+        log.debug("getType------------->" + message.getType());
         
         tab = "tab2";
         model.addAttribute("tab", tab);

@@ -79,12 +79,6 @@
 	<bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
-		<!-- all message/* views will not be handled by this resolver as they are Tiles views -->
-		<property name="excludedViewNames">
-			<array>
-				<value>message/*</value>
-			</array>
-		</property>
 	</bean>
 
 	<!-- Handles Tiles views. POLE VIST VAJA HETKEL kui teha interceptoriga-->

@@ -9,6 +9,55 @@ a {
 	color: #328eea;
 }
 
+input[type="text"],input[type="password"],textarea {
+	background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    border-radius: 4px;
+    color: #555;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 3px 6px;
+}
+input[type="text"]:focus,input[type="password"]:focus,textarea:focus {
+	border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+    outline: 0 none;
+}
+/*
+button{
+	border:1px solid #15aeec; -webkit-border-radius: 3px; -moz-border-radius: 3px;
+	border-radius: 4px;
+	font-size:13px;
+	font-family:arial, helvetica, sans-serif;
+	padding: 6px 12px; 
+	text-decoration:none; 
+	display:inline-block;
+	text-transform: uppercase; 
+	font-weight:bold; 
+	color: #FFFFFF;
+	background-color: #49c0f0; 
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#49c0f0), to(#2CAFE3));
+	background-image: -webkit-linear-gradient(top, #49c0f0, #2CAFE3);
+	background-image: -moz-linear-gradient(top, #49c0f0, #2CAFE3);
+	background-image: -ms-linear-gradient(top, #49c0f0, #2CAFE3);
+	background-image: -o-linear-gradient(top, #49c0f0, #2CAFE3);
+	background-image: linear-gradient(to bottom, #49c0f0, #2CAFE3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#49c0f0, endColorstr=#2CAFE3);
+	cursor: pointer;
+}
+
+button:hover{
+	border:1px solid #1090c3;
+ 	background-color: #1ab0ec; 
+ 	background-image: -webkit-gradient(linear, left top, left bottom, from(#1ab0ec), to(#1a92c2));
+ 	background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+ 	background-image: -moz-linear-gradient(top, #1ab0ec, #1a92c2);
+ 	background-image: -ms-linear-gradient(top, #1ab0ec, #1a92c2);
+ 	background-image: -o-linear-gradient(top, #1ab0ec, #1a92c2);
+ 	background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#1ab0ec, endColorstr=#1a92c2);
+}
+*/
 .header-wrapper {
 	height: 60px;
 	width: 100%;

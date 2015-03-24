@@ -10,6 +10,7 @@ public class Message {
 	@Size(min=1, max=100)
 	private String text;
 	private Date date;
+	private MessageTypeEnum type;
 
 	public Long getId() {
 		return id;
@@ -33,5 +34,13 @@ public class Message {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public MessageTypeEnum getType() {
+		return type;
+	}
+
+	public void setType(MessageTypeEnum type) {
+		this.type = type;
 	}
 }

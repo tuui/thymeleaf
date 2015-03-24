@@ -57,8 +57,16 @@
 			<form action="#" th:action="@{/auth/messageList}" th:object="${message}" method="post">
 				<table>
 					<tr>
+						<td th:text="#{message.type}">Type</td>
+						<td>
+							<select th:field="*{type}">
+								<option th:each="type : ${allMessageTypes}" th:value="${type}" th:text="#{${'message.type.' + type}}">General</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<td th:text="#{message.message}">Message</td>
-						<td><textarea th:field="*{text}" /></td>
+						<td><textarea th:field="*{text}" cols="40"/></td>
 						<td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Message Error</td>
 					</tr>
 				</table>
