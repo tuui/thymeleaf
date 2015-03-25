@@ -14,70 +14,72 @@
 				<a th:classappend="${tab == 'tab3' ? 'active' : ''}" href="#" th:href="@{/auth/messageList/3}">Send new message</a>
 			</li>
 		</ul>
-		<!-- Recieved messages -->
-		<table th:if="${tab == 'tab1'}" class="table-full">
-			<thead>
-				<tr>
-					<th th:text="#{message.date}">Date</th>
-					<th th:text="#{message.message}">Message</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="message : ${recievedMessages}">
-					<td th:text="${{message.date}}">15.01.2015 15:15</td>
-					<td th:text="${message.text}">long message text here</td>
-				</tr>
-				<tr th:unless="${!#lists.isEmpty(recievedMessages)}">
-					<td colspan="2">No messages</td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<!-- Sent messages -->
-		<table th:if="${tab == 'tab2'}" class="table-full">
-			<thead>
-				<tr>
-					<th th:text="#{message.date}">Date</th>
-					<th th:text="#{message.message}">Message</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="message : ${sentMessages}">
-					<td th:text="${{message.date}}">15.01.2015 15:15</td>
-					<td th:text="${message.text}">long message text here</td>
-				</tr>
-				<tr th:unless="${!#lists.isEmpty(sentMessages)}">
-					<td colspan="2">No messages</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<!-- Sent new message -->
-		<div th:if="${tab == 'tab3'}">
-			<form action="#" th:action="@{/auth/messageList}" th:object="${message}" method="post">
-				<table>
+		<div th:switch="${tab}">
+			<!-- Recieved messages -->
+			<table th:case="'tab1'" class="table-full">
+				<thead>
 					<tr>
-						<td th:text="#{message.type}">Type</td>
-						<td>
-							<select th:field="*{type}" th:onchange="'submit()'">
-								<option th:each="type : ${allMessageTypes}" th:value="${type}" th:text="#{${'message.type.' + type}}">General</option>
-							</select>
-						</td>
+						<th th:text="#{message.date}">Date</th>
+						<th th:text="#{message.message}">Message</th>
 					</tr>
-					<tr th:if="${message.typeOrder}">
-						<td th:text="#{message.orderNo}">Order number</td>
-						<td><input type="text" th:field="*{orderNo}" /></td>
+				</thead>
+				<tbody>
+					<tr th:each="message : ${recievedMessages}">
+						<td th:text="${{message.date}}">15.01.2015 15:15</td>
+						<td th:text="${message.text}">long message text here</td>
 					</tr>
+					<tr th:unless="${!#lists.isEmpty(recievedMessages)}">
+						<td colspan="2">No messages</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- Sent messages -->
+			<table th:case="'tab2'" class="table-full">
+				<thead>
 					<tr>
-						<td th:text="#{message.message}">Message</td>
-						<td><textarea th:field="*{text}" cols="40"></textarea></td>
-						<td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Message Error</td>
+						<th th:text="#{message.date}">Date</th>
+						<th th:text="#{message.message}">Message</th>
 					</tr>
-				</table>
-				<div>
-					<button type="submit" name="sendMessage" th:text="#{message.sendMessage}">Send message</button>
-				</div>
-			</form>
+				</thead>
+				<tbody>
+					<tr th:each="message : ${sentMessages}">
+						<td th:text="${{message.date}}">15.01.2015 15:15</td>
+						<td th:text="${message.text}">long message text here</td>
+					</tr>
+					<tr th:unless="${!#lists.isEmpty(sentMessages)}">
+						<td colspan="2">No messages</td>
+					</tr>
+				</tbody>
+			</table>
+	
+			<!-- Send new message -->
+			<div th:case="'tab3'">
+				<form action="#" th:action="@{/auth/messageList}" th:object="${message}" method="post">
+					<table>
+						<tr>
+							<td th:text="#{message.type}">Type</td>
+							<td>
+								<select th:field="*{type}" th:onchange="'submit()'">
+									<option th:each="type : ${allMessageTypes}" th:value="${type}" th:text="#{${'message.type.' + type}}">General</option>
+								</select>
+							</td>
+						</tr>
+						<tr th:if="${message.typeOrder}">
+							<td th:text="#{message.orderNo}">Order number</td>
+							<td><input type="text" th:field="*{orderNo}" /></td>
+						</tr>
+						<tr>
+							<td th:text="#{message.message}">Message</td>
+							<td><textarea th:field="*{text}" cols="40"></textarea></td>
+							<td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Message Error</td>
+						</tr>
+					</table>
+					<div>
+						<button type="submit" name="sendMessage" th:text="#{message.sendMessage}">Send message</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 </body>
