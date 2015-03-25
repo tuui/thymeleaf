@@ -28,7 +28,7 @@
 						<td th:text="${{message.date}}">15.01.2015 15:15</td>
 						<td th:text="${message.text}">long message text here</td>
 					</tr>
-					<tr th:unless="${!#lists.isEmpty(recievedMessages)}">
+					<tr th:if="${#lists.isEmpty(recievedMessages)}">
 						<td colspan="2">No messages</td>
 					</tr>
 				</tbody>

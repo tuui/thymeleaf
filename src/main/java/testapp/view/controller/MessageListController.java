@@ -42,28 +42,30 @@ public class MessageListController {
 	public String tab() {
 		return tab;
 	}
-	
-	@ModelAttribute("recievedMessages")
-	public List<Message> getRecievedMessages(){
-		log.debug("getRecievedMessages........");
-		return messageI.getRecievedMessages();
-	}
-	
-	@ModelAttribute("sentMessages")
-	public List<Message> getSendMessages(){
-		log.debug("getSentMessages........");
-		return messageI.getSentMessages();
-	}
-	
+
 	@ModelAttribute("allMessageTypes")
 	public List<MessageTypeEnum> getAllMessageTypes(){
-		log.debug("getAllMessageTypes........");
+		log.debug("getAllMessageTypes");
 		return Arrays.asList(MessageTypeEnum.GENERAL, MessageTypeEnum.ORDER);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String viewMessages(Model model){
+	public String tabRecieved(Model model){
 		tab = "tab1";
+		model.addAttribute("tab", tab);
+		model.addAttribute("recievedMessages", messageI.getRecievedMessages());
+		return PATH;
+	}
+	
+	private String tabSent(Model model){
+		tab = "tab2";
+		model.addAttribute("tab", tab);
+		model.addAttribute("sentMessages", messageI.getSentMessages());
+		return PATH;
+	}
+	
+	private String tabSendNew(Model model){
+		tab = "tab3";
 		model.addAttribute("tab", tab);
 		return PATH;
 	}
@@ -71,14 +73,11 @@ public class MessageListController {
 	@RequestMapping(value = "/{tabId}", method = RequestMethod.GET)
 	public String tab(@PathVariable("tabId") int tabId, Model model, Message message){
 		if(tabId == 2){
-			tab = "tab2";
+			return tabSent(model);
 		} else if (tabId == 3){
-			tab = "tab3";
-		} else {
-			tab = "tab1";
+			return tabSendNew(model);
 		}
-		model.addAttribute("tab", tab);
-		return PATH;
+		return tabRecieved(model);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -94,8 +93,6 @@ public class MessageListController {
         message.setDate(new Date());
         messageI.insertMessage(message);
  
-        tab = "tab2";
-        model.addAttribute("tab", tab);
-        return PATH;
+        return tabSent(model);
     }
 }

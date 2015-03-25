@@ -60,10 +60,10 @@ public class MainController {
         Throwable throwable = (Throwable) request.getAttribute("javax.servlet.error.exception");
         String errorMessage = throwable != null ? ExceptionUtils.getStackTrace(throwable) : "Throwable is null!";
         redirectAttrs.addFlashAttribute("stacktrace", errorMessage);        
-        return "redirect:/show-stacktrace";
+        return "redirect:/stacktrace";
     }
     
-    @RequestMapping("/show-stacktrace")
+    @RequestMapping("/stacktrace")
     public String showStacktrace(@ModelAttribute("stacktrace") String stacktrace, Model model) {
         model.addAttribute("errorMessage", stacktrace);
         return "error";
