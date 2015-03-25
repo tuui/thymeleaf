@@ -81,6 +81,11 @@ public class MessageListController {
 		return PATH;
 	}
 	
+	@RequestMapping(method = RequestMethod.POST)
+    public String post(Message message, BindingResult bindingResult, Model model) {	
+		return PATH;
+    }
+	
 	@RequestMapping(params={"sendMessage"}, method = RequestMethod.POST)
     public String saveUser(@Valid Message message, BindingResult bindingResult, Model model) {	
         if (bindingResult.hasErrors()) {
@@ -88,9 +93,7 @@ public class MessageListController {
         }
         message.setDate(new Date());
         messageI.insertMessage(message);
-        
-        log.debug("getType------------->" + message.getType());
-        
+ 
         tab = "tab2";
         model.addAttribute("tab", tab);
         return PATH;

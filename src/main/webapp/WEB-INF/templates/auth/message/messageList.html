@@ -59,14 +59,18 @@
 					<tr>
 						<td th:text="#{message.type}">Type</td>
 						<td>
-							<select th:field="*{type}">
+							<select th:field="*{type}" th:onchange="'submit()'">
 								<option th:each="type : ${allMessageTypes}" th:value="${type}" th:text="#{${'message.type.' + type}}">General</option>
 							</select>
 						</td>
 					</tr>
+					<tr th:if="${message.typeOrder}">
+						<td th:text="#{message.orderNo}">Order number</td>
+						<td><input type="text" th:field="*{orderNo}" /></td>
+					</tr>
 					<tr>
 						<td th:text="#{message.message}">Message</td>
-						<td><textarea th:field="*{text}" cols="40"/></td>
+						<td><textarea th:field="*{text}" cols="40"></textarea></td>
 						<td th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Message Error</td>
 					</tr>
 				</table>
