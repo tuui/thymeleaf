@@ -1,1 +1,4 @@
-/target/
+/.settings/gradle/org.springsource.ide.eclipse.gradle.core.prefs
+/target
+/build
+.gradle/

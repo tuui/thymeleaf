@@ -1,0 +1,99 @@
+apply plugin:'java'
+apply plugin: 'war'
+
+def thymeleafVersion = "2.1.4.RELEASE"
+def thymeleafspringsecurity3Version = "2.1.1.RELEASE"
+def pagesdialectVersion = "2.1.6"
+def springframeworkVersion = "4.1.5.RELEASE"
+def springsecurityVersion = "3.2.6.RELEASE"
+def javaxservletVersion = "3.0.1"
+def javaxvalidationVersion = "1.0.0.GA"
+def junitVersion = "4.11"
+def mockitoVersion = "1.10.19"
+def springbootVersion = "1.2.2.RELEASE"
+def slf4jVersion = "1.7.5"
+def logbackVersion = "1.0.13"
+def commonslangVersion = "3.3.2"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile (
+
+		//	THYMELEAF
+		"org.thymeleaf:thymeleaf:${thymeleafVersion}",
+		"org.thymeleaf:thymeleaf-spring4:${thymeleafVersion}",
+		"org.thymeleaf.extras:thymeleaf-extras-springsecurity3:${thymeleafspringsecurity3Version}",
+		//	PagesDialect for Thymeleaf 
+		"net.sourceforge.pagesdialect:pagesdialect-core:${pagesdialectVersion}",
+	
+		//	SPRING
+		"org.springframework:spring-core:${springframeworkVersion}",
+		"org.springframework:spring-context:${springframeworkVersion}",
+		"org.springframework:spring-beans:${springframeworkVersion}",
+		"org.springframework:spring-web:${springframeworkVersion}",
+		"org.springframework:spring-webmvc:${springframeworkVersion}",
+		"org.springframework:spring-test:${springframeworkVersion}",
+		
+		//	SPRING SECURITY
+		"org.springframework.security:spring-security-core:${springsecurityVersion}",
+		"org.springframework.security:spring-security-web:${springsecurityVersion}",
+		"org.springframework.security:spring-security-config:${springsecurityVersion}",
+
+		//	JAVAX
+		"javax.servlet:javax.servlet-api:${javaxservletVersion}",
+		"javax.validation:validation-api:${javaxvalidationVersion}",
+
+		//	TESTING
+		"junit:junit:${junitVersion}",
+		"org.mockito:mockito-core:${mockitoVersion}",
+		"org.springframework.boot:spring-boot:${springbootVersion}",
+
+		//	LOGGING
+		"org.slf4j:slf4j-api:>${slf4jVersion}",
+		"org.slf4j:log4j-over-slf4j:${slf4jVersion}",
+		"ch.qos.logback:logback-classic:${logbackVersion}",
+	
+		"org.apache.commons:commons-lang3:${commonslangVersion}",
+	)
+}
+
+//	LOAD PROPERTIES
+def loadProperties() {
+    def config = new Properties()
+    def propFile = new File(rootDir, "src/main/resources/personal.properties")
+    println propFile
+    if (propFile.canRead()) {
+        config.load(new FileInputStream(propFile))
+        for (Map.Entry property in config) {
+            ext[property.key] = property.value;
+        }
+    }
+}
+
+loadProperties()
+ext.wildflyHomeDir = !project.hasProperty("wildflyHome") || wildflyHome.trim().equals("") ? null : file(wildflyHome)
+
+//	DEPLOY TO WILDFLY
+def getWildflyDeploymentsDir() {
+	return new File(wildflyHomeDir, "standalone/deployments");
+}
+
+task deploy() {
+	File wildflyDeploymentsDir = getWildflyDeploymentsDir()
+
+	def warName = "thymeleaf-app.war"
+	def warFile = new File(wildflyDeploymentsDir, warName)
+	description 'Deploys war file to Wildfly: ' + wildflyDeploymentsDir
+	inputs.file war
+	outputs.file warFile
+	doLast{
+		copy {
+			from war
+			into wildflyDeploymentsDir
+		}
+		println "Copied war to " + wildflyDeploymentsDir
+	}
+}
