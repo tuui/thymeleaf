@@ -64,7 +64,7 @@ dependencies {
 def loadProperties() {
     def config = new Properties()
     def propFile = new File(rootDir, "src/main/resources/personal.properties")
-    println propFile
+
     if (propFile.canRead()) {
         config.load(new FileInputStream(propFile))
         for (Map.Entry property in config) {
