@@ -92,6 +92,13 @@
 			<version>${thymeleafspringsecurity3.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- PagesDialect for Thymeleaf -->
+		 <dependency>
+			<groupId>net.sourceforge.pagesdialect</groupId>
+			<artifactId>pagesdialect-core</artifactId>
+			<version>2.1.6</version>
+		</dependency> 
 	
 		<!-- SPRING -->
 		<dependency>

@@ -22,6 +22,7 @@ import testapp.server.service.UserI;
 public class UserListController {
 
 	private final static Logger log = LoggerFactory.getLogger(UserListController.class);
+	private final static String ROWS_IN_PAGE = "10";
 	
 	@Autowired
 	private UserI userI;
@@ -30,6 +31,11 @@ public class UserListController {
 	@ModelAttribute("page")
 	public String module() {
 		return "users";
+	}
+	
+	@ModelAttribute("rowsInPage")
+	public String rowsInPage() {
+		return ROWS_IN_PAGE;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

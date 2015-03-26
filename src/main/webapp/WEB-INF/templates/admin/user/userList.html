@@ -7,16 +7,16 @@
 			<table class="table-full">
 				<thead>
 					<tr>
-						<th th:text="#{user.username}">Username</th>
-						<th th:text="#{user.firstName}">First name</th>
-						<th th:text="#{user.lastName}">Last Name</th>
-						<th th:text="#{user.email}">E-mail</th>
-						<th th:text="#{user.telephone}">E-mail</th>
+						<th pages:sort="username" th:text="#{user.username}">Username</th>
+						<th pages:sort="firstName" th:text="#{user.firstName}">First name</th>
+						<th pages:sort="lastName" th:text="#{user.lastName}">Last Name</th>
+						<th pages:sort="email" th:text="#{user.email}">E-mail</th>
+						<th pages:sort="telephone" th:text="#{user.telephone}">Telephone</th>
 						<th th:text="#{user.action}">Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user,rowStat : ${allUsers}">
+					<tr th:each="user,rowStat : ${allUsers}" pages:paginate="${rowsInPage}">
 						<td th:text="${user.username}">hannibal</td>
 						<td th:text="${user.firstName}">John</td>
 						<td th:text="${user.lastName}">Smith</td>

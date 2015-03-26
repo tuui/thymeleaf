@@ -68,9 +68,11 @@
 		<property name="templateResolver" ref="templateResolver" />
 		<property name="additionalDialects">
 			<set>
+				<!-- Thymeleaf - Spring Security integration -->
 				<bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
-<!-- 	TILES			<bean class="org.thymeleaf.extras.tiles2.dialect.TilesDialect" /> -->
-				<!-- TODO kas siia vaja ka <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" /> -->
+				<!-- PagesDialect for Thymeleaf: http://pagesdialect.sourceforge.net/ -->
+				<bean class="org.thymeleaf.spring4.dialect.SpringStandardDialect" />
+				<bean class="net.sourceforge.pagesdialect.PagesDialect" />
 			</set>
 		</property>
 	</bean>
@@ -80,20 +82,5 @@
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
-
-	<!-- Handles Tiles views. POLE VIST VAJA HETKEL kui teha interceptoriga-->
-<!-- 	<bean id="tilesViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver"> -->
-<!-- 		<property name="templateEngine" ref="templateEngine" /> -->
-<!-- 		<property name="characterEncoding" value="UTF-8" /> -->
-<!-- 		<property name="viewClass" value="org.thymeleaf.extras.tiles2.spring4.web.view.ThymeleafTilesView" /> -->
-<!-- 	</bean> -->
-
-<!-- 	<bean id="thymeleafTilesConfigurer" class="org.thymeleaf.extras.tiles2.spring4.web.configurer.ThymeleafTilesConfigurer"> -->
-<!-- 		<property name="definitions"> -->
-<!-- 			<array> -->
-<!-- 				<value>/WEB-INF/templates/message/tiles-defs.xml</value> -->
-<!-- 			</array> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
 
 </beans>

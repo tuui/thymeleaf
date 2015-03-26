@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import testapp.server.model.User;
@@ -15,30 +16,14 @@ public class UserRepository {
 	private Map<Long,User> users;
 
 	public UserRepository() {
-		super();
 		
 		users = new LinkedHashMap<>();
 		
-		User user1 = new User();
-		user1.setId(1L);
-		user1.setUsername("admin");
-		user1.setFirstName("Site");
-		user1.setLastName("Administrator");
-		user1.setPassword("admin");
-		user1.setEmail("admin@site.com");
-		user1.setTelephone("55 66 77 88");
-		user1.setRole("ROLE_ADMIN");
-		users.put(user1.getId(), user1);
-		
-		User user2 = new User();
-		user2.setId(2L);
-		user2.setUsername("martin");
-		user2.setFirstName("Martin");
-		user2.setLastName("T");
-		user2.setPassword("martin");
-		user2.setTelephone("500 600");
-		user2.setRole("ROLE_USER");
-		users.put(user2.getId(), user2);
+		generateUser("admin", "Site", "Administrator", "admin", "admin@site.com", "55 66 77 88", "ROLE_ADMIN");
+		generateUser("martin", "Martin", "T", "martin", null, "50 06 00 43", "ROLE_USER");
+		for(int i=1; i<=30; i++){
+			generateUser("user" + i, "Test" + i, "User" + i, "password", "user" + i + "@site.com", "55 43 55 " + StringUtils.leftPad(i+"", 2, "0"), "ROLE_USER");
+		}
 	}
 	
 	public List<User> getUsers() {
@@ -75,5 +60,17 @@ public class UserRepository {
 			}
 		}
 		return maxId;
+	}
+	
+	private void generateUser(String uname, String fname, String lname, String pw, String email, String tel, String role){
+		User user = new User();
+		user.setUsername(uname);
+		user.setFirstName(fname);
+		user.setLastName(lname);
+		user.setPassword(pw);
+		user.setEmail(email);
+		user.setTelephone(tel);
+		user.setRole(role);
+		addUser(user);
 	}
 }
