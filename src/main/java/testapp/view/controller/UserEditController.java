@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,26 +26,23 @@ public class UserEditController {
 	private UserI userI;
 	
 	private String oldPassword;
-	
-	@ModelAttribute("page")
-	public String module() {
-		return "users";
-	}
-	
+		
 	//	User peab olema argumendiks, muidu tuleb: Neither BindingResult nor plain target object for bean name 'user'
 	@RequestMapping({"/admin/userEdit"})
-    public String viewUserEdit(final User user) {
-		log.debug("viewEditUsermodel...");
+    public String viewUserEdit(final User user, Model model) {
+		log.debug("viewEditUsermodel...id={}", user.getId());
 		oldPassword = user.getPassword();
+		model.addAttribute("page", "users");
         return "admin/user/userEdit";
     }
 	
 	@RequestMapping(value="/admin/userEdit", params={"saveUser"}, method = RequestMethod.POST)
-    public String saveUser(@Valid User user, BindingResult bindingResult, SessionStatus status) {	
+    public String saveUser(@Valid User user, BindingResult bindingResult, SessionStatus status, Model model) {	
 		if(user.getPassword().isEmpty()){
 			user.setPassword(oldPassword);
 		}
         if (bindingResult.hasErrors()) {
+        	model.addAttribute("page", "users");
             return "admin/user/userEdit";
         }
         userI.saveUser(user);

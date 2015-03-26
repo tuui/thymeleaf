@@ -17,6 +17,23 @@ public class User {
 	
 	private String role;
 
+	public User(){
+	}
+	
+	public User(User user) {
+		super();
+		this.id = user.id;
+		this.username = user.username;
+		this.firstName = user.firstName;
+		this.lastName = user.lastName;
+		this.password = user.password;
+		this.email = user.email;
+		this.telephone = user.telephone;
+		this.role = user.role;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}

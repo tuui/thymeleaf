@@ -48,9 +48,9 @@ public class UserListController {
 
 	@RequestMapping(params={"editUser"}, method = RequestMethod.POST)
     public String editUser(final HttpServletRequest req, RedirectAttributes redirectAttrs) {
-		log.debug("editUser...");
-		final Integer rowId = Integer.valueOf(req.getParameter("editUser"));
-		redirectAttrs.addFlashAttribute("user", users.get(rowId));
+		final Long rowId = Long.valueOf(req.getParameter("editUser"));
+		log.debug("editUser...id = {}", rowId);
+		redirectAttrs.addFlashAttribute("user", getEditableUserById(rowId));
         return "redirect:/admin/userEdit";
     }
 	
@@ -60,6 +60,15 @@ public class UserListController {
 		redirectAttrs.addFlashAttribute("user", new User());
         return "redirect:/admin/userEdit";
     }
+	
+	private User getEditableUserById(Long id){
+		for(User user : users){
+			if(user.getId().equals(id)){
+				return new User(user);
+			}
+		}
+		return new User();
+	}
 	
 	/*	
 	@RequestMapping(params={"editUser"}, method = RequestMethod.POST)

@@ -24,7 +24,7 @@
 						<td th:text="${user.telephone}">55667788</td>
 						<td>
 							<form action="#" th:action="@{/admin/userList}" method="post">
-								<button type="submit" name="editUser" th:value="${rowStat.index}" th:text="#{user.editUser}">Edit user</button>
+								<button type="submit" name="editUser" th:value="${user.id}" th:text="#{user.editUser}">Edit user</button>
 							</form>
 						</td>
 					</tr>
