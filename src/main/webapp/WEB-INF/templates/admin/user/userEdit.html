@@ -44,6 +44,14 @@
 					<td><input type="text" th:field="*{telephone}" /></td>
 					<td th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}">Telephone Error</td>
 				</tr>
+				<tr>
+					<td th:text="#{user.role}">Role</td>
+					<td>
+						<select th:field="*{role}">
+							<option th:each="role : ${allRoles}" th:value="${role}" th:text="#{${'user.role.' + role}}">User</option>
+						</select>
+					</td>
+				</tr>
 			</table>
 			<div>
 				<button type="submit" name="saveUser" th:text="#{user.saveUser}">Save user</button>
