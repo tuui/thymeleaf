@@ -2,6 +2,7 @@ package testapp.view.controller;
 
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,11 @@ public class UserEditController {
 		if(user.getPassword().isEmpty()){
 			user.setPassword(oldPassword);
 		}
+		
+		if(StringUtils.isEmpty(user.getPassword())){
+			bindingResult.rejectValue("password", "Empty", "Password cannot be empty.");
+		}
+
         if (bindingResult.hasErrors()) {
         	model.addAttribute("page", "users");
             return "admin/user/userEdit";

@@ -196,6 +196,9 @@ footer {
 .table-full th {
 	font-weight: bold;
 }
+.table-full th a{
+	color: #000000;
+}
 .paginate-count{
 	float:right;
 	margin: 5px 5px 5px 0;
