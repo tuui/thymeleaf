@@ -44,7 +44,6 @@ public class UserEditController {
     public String viewUserEdit(final User user, Model model) {
 		log.debug("viewEditUsermodel...id={}", user.getId());
 		oldPassword = user.getPassword();
-		model.addAttribute("page", "users");
         return "admin/user/userEdit";
     }
 	
@@ -59,7 +58,6 @@ public class UserEditController {
 		}
 
         if (bindingResult.hasErrors() || !roles.contains(user.getRole())) {
-        	model.addAttribute("page", "users");
             return "admin/user/userEdit";
         }
         userI.saveUser(user);

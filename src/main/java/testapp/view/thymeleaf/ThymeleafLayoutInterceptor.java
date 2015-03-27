@@ -39,6 +39,7 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
 		String layoutName = getLayoutName(handler);
 		modelAndView.setViewName(layoutName);
 		modelAndView.addObject(this.viewAttributeName, originalViewName);
+		modelAndView.addObject("menuActive", Menu.getMenuByView(originalViewName));
 	}
 
 	private boolean isRedirectOrForward(String viewName) {

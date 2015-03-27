@@ -5,19 +5,19 @@
 	<div th:fragment="menu" class="menu">
 		<ul>
 			<li>
-				<a th:classappend="${page == 'home' ? 'active' : ''}" href="#" th:href="@{/}">Home</a>
+				<a th:classappend="${menuActive == 'home' ? 'active' : ''}" href="#" th:href="@{/}">Home</a>
 			</li>
 			<li sec:authorize="hasRole('ROLE_ADMIN')">
-				<a th:classappend="${page == 'users' ? 'active' : ''}" href="#" th:href="@{/admin/userList}">Users</a>
+				<a th:classappend="${menuActive == 'users' ? 'active' : ''}" href="#" th:href="@{/admin/userList}">Users</a>
 			</li>
 			<li sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN')">
-				<a th:classappend="${page == 'messages' ? 'active' : ''}" href="#" th:href="@{/auth/messageList}">Messages</a>
+				<a th:classappend="${menuActive == 'messages' ? 'active' : ''}" href="#" th:href="@{/auth/messageList}">Messages</a>
 			</li>
 			<li>
-				<a th:classappend="${page == 'contact' ? 'active' : ''}" href="#" th:href="@{/contact}">Contact</a>
+				<a th:classappend="${menuActive == 'contact' ? 'active' : ''}" href="#" th:href="@{/contact}">Contact</a>
 			</li>
 			<li sec:authorize="hasRole('ROLE_ADMIN')">
-				<a th:classappend="${page == 'devTest' ? 'active' : ''}" href="#" th:href="@{/admin/devTest}">Dev &amp; Test</a>
+				<a th:classappend="${menuActive == 'devTest' ? 'active' : ''}" href="#" th:href="@{/admin/devTest}">Dev &amp; Test</a>
 			</li>
 		</ul>
 	</div>

@@ -28,11 +28,6 @@ public class UserListController {
 	private UserI userI;
 	private List<User> users;
 	
-	@ModelAttribute("page")
-	public String module() {
-		return "users";
-	}
-	
 	@ModelAttribute("rowsInPage")
 	public String rowsInPage() {
 		return ROWS_IN_PAGE;

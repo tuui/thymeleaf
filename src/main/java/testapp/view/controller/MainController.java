@@ -17,25 +17,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class MainController {
 	private final static Logger log = LoggerFactory.getLogger(MainController.class);
-	private String page = "home";
-	
-	/* used when "page" attribute is removed, e.g. in case of login-error */
-	@ModelAttribute("page")
-	public String module() {
-		return page;
-	}
 
 	@RequestMapping("/")
 	public String root(Model model) {
-		page = "home";
-		model.addAttribute("page", "home");
 		return "index";
 	}
 
 	@RequestMapping("/contact")
 	public String contact(Model model) {
-		page = "contact";
-		model.addAttribute("page", "contact");
 		return "public/contact";
 	}
 	
@@ -49,7 +38,6 @@ public class MainController {
 	/** Error page. */
     @RequestMapping("/error")
     public String error(HttpServletRequest request, RedirectAttributes redirectAttrs) {
-    	page = "home";
     	Integer errorCode = (Integer)request.getAttribute("javax.servlet.error.status_code");
     	log.error("Error {} occured", errorCode);
     	

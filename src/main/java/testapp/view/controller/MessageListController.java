@@ -27,16 +27,11 @@ import testapp.server.service.MessageI;
 public class MessageListController {
 
 	private final static Logger log = LoggerFactory.getLogger(MessageListController.class);
-	private final static String PATH = "/auth/message/messageList";
+	private final static String PATH = "auth/message/messageList";
 	
 	@Autowired
 	private MessageI messageI;
 	private String tab = "tab1";
-	
-	@ModelAttribute("page")
-	public String module() {
-		return "messages";
-	}
 	
 	@ModelAttribute("tab")
 	public String tab() {
