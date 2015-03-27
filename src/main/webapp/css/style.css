@@ -126,10 +126,11 @@ header {
 }
 
 footer {
-	width: 870px;
+	width: 575px;
 	float: right;
 	padding-right: 20px;
 	text-align: right;
+	position: relative;
 }
 
 .login {
