@@ -11,6 +11,7 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
 	
 	private static final String DEFAULT_LAYOUT = "layout/default";
 	private static final String DEFAULT_VIEW_ATTRIBUTE_NAME = "view";
+	private static final String ACTIVE_MENU_ATTRIBUTE_NAME = "menuActive";
 	
 	private String defaultLayout = DEFAULT_LAYOUT;
 	private String viewAttributeName = DEFAULT_VIEW_ATTRIBUTE_NAME;
@@ -39,7 +40,7 @@ public class ThymeleafLayoutInterceptor extends HandlerInterceptorAdapter {
 		String layoutName = getLayoutName(handler);
 		modelAndView.setViewName(layoutName);
 		modelAndView.addObject(this.viewAttributeName, originalViewName);
-		modelAndView.addObject("menuActive", Menu.getMenuByView(originalViewName));
+		modelAndView.addObject(ACTIVE_MENU_ATTRIBUTE_NAME, Menu.getMenuByView(originalViewName));
 	}
 
 	private boolean isRedirectOrForward(String viewName) {
