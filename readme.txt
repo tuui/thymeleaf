@@ -1,0 +1,1 @@
+* Install Lombok for Eclipse: download jar (http://projectlombok.org/download.html) and run it with double click, it will update eclipse.ini file

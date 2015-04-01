@@ -2,9 +2,9 @@ package testapp.view.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,9 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 /**
  * Application home page and login.
  */
+@Slf4j
 @Controller
 public class MainController {
-	private final static Logger log = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping("/")
 	public String root(Model model) {

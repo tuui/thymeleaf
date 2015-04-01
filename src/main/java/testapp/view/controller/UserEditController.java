@@ -5,9 +5,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +22,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import testapp.server.model.User;
 import testapp.server.service.UserI;
 
+@Slf4j
 @Controller
 @SessionAttributes(types = User.class)
 public class UserEditController {
 
-	private final static Logger log = LoggerFactory.getLogger(UserEditController.class);
 	private final static List<String> roles = Arrays.asList("ROLE_USER", "ROLE_ADMIN");
 	
 	@Autowired

@@ -6,8 +6,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +21,11 @@ import testapp.server.model.Message;
 import testapp.server.model.MessageTypeEnum;
 import testapp.server.service.MessageI;
 
-
+@Slf4j
 @Controller
 @RequestMapping("/auth/messageList")
 public class MessageListController {
 
-	private final static Logger log = LoggerFactory.getLogger(MessageListController.class);
 	private final static String PATH = "auth/message/messageList";
 	
 	@Autowired

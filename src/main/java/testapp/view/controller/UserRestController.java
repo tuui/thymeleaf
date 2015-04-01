@@ -1,8 +1,10 @@
 package testapp.view.controller;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,10 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import testapp.server.model.User;
 import testapp.server.service.UserI;
 
+@Slf4j
 @RestController
 public class UserRestController {
-
-	private final static Logger log = LoggerFactory.getLogger(UserRestController.class);
 
 	@Autowired
 	private UserI userI;
@@ -49,64 +50,20 @@ public class UserRestController {
 		return response;
 	}
 
+	@Getter
+	@Setter
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	public static class GetFbUserResponse {
 		private String username;
 		private String name;
 		private String error;
-
-		public String getUsername() {
-			return username;
-		}
-
-		public void setUsername(String username) {
-			this.username = username;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public String getError() {
-			return error;
-		}
-
-		public void setError(String error) {
-			this.error = error;
-		}
 	}
 
+	@Getter
+	@Setter
 	public static class IsUserResponse {
 		private String username;
 		private String role;
 		private String error;
-
-		public String getUsername() {
-			return username;
-		}
-
-		public void setUsername(String username) {
-			this.username = username;
-		}
-
-		public String getRole() {
-			return role;
-		}
-
-		public void setRole(String role) {
-			this.role = role;
-		}
-
-		public String getError() {
-			return error;
-		}
-
-		public void setError(String error) {
-			this.error = error;
-		}
 	}
 }

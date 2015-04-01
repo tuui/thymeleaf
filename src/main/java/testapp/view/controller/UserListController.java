@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,11 +17,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import testapp.server.model.User;
 import testapp.server.service.UserI;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin/userList")
 public class UserListController {
 
-	private final static Logger log = LoggerFactory.getLogger(UserListController.class);
 	private final static String ROWS_IN_PAGE = "10";
 	
 	@Autowired
